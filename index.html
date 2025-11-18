@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Test</title>
+</head>
+<body>
+
+<p>This html document is to test cookies </p>
+<p> Type anything into the text box.  Once you click submit the x sign will save that cookie</p>
+
+<script>
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setDate(date.getDate() + 30);  // 1 month
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + "; " + expires + "; path=/";
+    }
+
+    function save(cookieName, inputId) {
+        const value = document.getElementById(inputId).value;
+        setCookie(cookieName, value, 30);
+        showCookies();
+    }
+
+    function showCookies() {
+        document.getElementById("show").textContent = document.cookie || "No cookies set.";
+    }
+</script>
+
+<label for="firsttext">Name</label>
+<input id="firsttext"><br>
+<button onclick="save('firstName','firsttext')">Set First Name</button>
+<p id="show"></p>
+
+
+<script>
+    showCookies();
+</script>
+
+</body>
+</html>
+
+
